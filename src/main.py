@@ -15,7 +15,7 @@ Funcionalidades:
 - Contagem granular de agentes por machineType (Workstation vs Server).
 - Identificação de serviços adicionais (Vigilance, Vulnerability, Cloud Funnel).
 - Saída em CSV compatível com a planilha de consumo.
-"""
+
 
 import os
 import csv
