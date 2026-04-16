@@ -26,8 +26,8 @@ from dotenv import load_dotenv
 class S1MSSPPro:
     def __init__(self):
         load_dotenv()
-        self.base_url = os.getenv("S1_BASE_URL").rstrip('/')
-        self.api_token = os.getenv("S1_API_TOKEN")
+        self.base_url = os.getenv("https://usea1-clmx.sentinelone.net").rstrip('/')
+        self.api_token = os.getenv("eyJraWQiOiJ1cy1lYXN0LTEtcHJvZC0wIiwiYWxnIjoiRVMyNTYifQ.eyJzdWIiOiJsdWNhcy5ib3JnZXNAY2xtLnRlY2giLCJpc3MiOiJhdXRobi11cy1lYXN0LTEtcHJvZCIsImRlcGxveW1lbnRfaWQiOiIxMjE0MjgiLCJ0eXBlIjoidXNlciIsImV4cCI6MTc3ODk0MzU4NSwiaWF0IjoxNzc2MzUxNTg1LCJqdGkiOiI3ZTRjZmJhZC00OWUwLTRlMjAtODI2Zi1jYTNkYmUzMmYzOTUifQ.fZ9QMi8v0H8zlCehnn2MuMxnUlg5qOPnDmyKsw2Kavx9yi9ly9--JCKrifKN___ls7L16e_zDE7rMK-uPKi73A")
 
         if not self.base_url or not self.api_token:
             raise ValueError("S1_BASE_URL e S1_API_TOKEN devem estar no seu arquivo .env")
