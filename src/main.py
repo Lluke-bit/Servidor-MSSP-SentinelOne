@@ -1,20 +1,20 @@
-S1 MSSP Pro Automation - Relatório de Consumo
+# S1 MSSP Pro Automation - Relatório de Consumo
 
-Autor: Lucas Borges
-Data: 16 de Abril de 2026
-Versão: 2.0 (Baseada na API v2.1)
+# Autor: Lucas Borges
+# Data: 16 de Abril de 2026
+# Versão: 2.0 (Baseada na API v2.1)
 
-Descrição:
-Este script automatiza a extração de dados de licenciamento e consumo da SentinelOne
-para preenchimento da planilha MSSP. Ele utiliza os endpoints de 'Accounts' e 'Sites'
-para mapear a hierarquia e o endpoint 'Agents/Count' para obter totais precisos de
-Workstations e Servers por nível de licença (Complete, Control, etc.).
+# Descrição:
+# Este script automatiza a extração de dados de licenciamento e consumo da SentinelOne
+# para preenchimento da planilha MSSP. Ele utiliza os endpoints de 'Accounts' e 'Sites'
+# para mapear a hierarquia e o endpoint 'Agents/Count' para obter totais precisos de
+# Workstations e Servers por nível de licença (Complete, Control, etc.).
 
-Funcionalidades:
-- Mapeamento automático de Tenants (Accounts) e Clientes (Sites).
-- Contagem granular de agentes por machineType (Workstation vs Server).
-- Identificação de serviços adicionais (Vigilance, Vulnerability, Cloud Funnel).
-- Saída em CSV compatível com a planilha de consumo.
+# Funcionalidades:
+# - Mapeamento automático de Tenants (Accounts) e Clientes (Sites).
+# - Contagem granular de agentes por machineType (Workstation vs Server).
+# - Identificação de serviços adicionais (Vigilance, Vulnerability, Cloud Funnel).
+# - Saída em CSV compatível com a planilha de consumo.
 
 
 import os
