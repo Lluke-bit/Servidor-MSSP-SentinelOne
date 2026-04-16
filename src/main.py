@@ -103,26 +103,23 @@ class S1MSSPPro:
 
         return results
 
-   def get_agent_count(self, site_id, machine_types=None, sku=None):
-    params = {
-        "siteIds": site_id,
-        "isDecommissioned": False  # ✅ boolean correto
-    }
-
-    if machine_types:
-        params["machineTypes"] = ",".join(machine_types)
+    def get_agent_count(self, site_id, machine_types=None, sku=None):
+        params = {
+            "siteIds": site_id,
+            "isDecommissioned": False  # ✅ boolean correto
+        }
+        if machine_types:
+            params["machineTypes"] = ",".join(machine_types)
 
     # ⚠️ só adiciona SKU se tiver certeza
-    if sku:
-        params["sku"] = sku
-
-    data = self._get_single("agents/count", params=params)
+        if sku:
+            params["sku"] = sku
+            data = self._get_single("agents/count", params=params)
 
     # DEBUG pesado (pra entender pq vem vazio)
-    if not data:
-        print(f"[DEBUG] agents/count vazio | params={params}")
-
-    return data.get("total", 0) if data else 0
+        if not data:
+            print(f"[DEBUG] agents/count vazio | params={params}")
+            return data.get("total", 0) if data else 0
 
     def check_additional_services(self, site_id):
         """Verifica serviços adicionais ativos no site."""
