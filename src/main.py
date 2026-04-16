@@ -87,7 +87,7 @@ class S1MSSPPro:
         return 0
 
     def check_additional_services(self, site_id):
-        """Verifica se serviços como Vulnerability ou Cloud Funnel estão ativos no site."""
+    #Verifica se serviços como Vulnerability ou Cloud Funnel estão ativos no site.
         services = {"Vulnerability": "Não", "CloudFunnel": "Não", "Vigilance": "Não"}
         
         # Verifica Vulnerability Management (Endpoint de configurações de App Management)
