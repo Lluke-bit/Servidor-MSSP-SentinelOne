@@ -1,13 +1,13 @@
 # S1 MSSP Pro Automation - Relatório de Consumo
 # Autor: Lucas Borges
-# Versão: 2.1 (Corrigida)
+# Versão: 2.3 
 
 import os
 import csv
 import requests
 from dotenv import load_dotenv
-S1_BASE_URL = input("Coloque a URL base")
-S1_API_TOKEN = input("Coloque APItoken do seu usuário")
+
+
 class S1MSSPPro:
     def __init__(self):
         load_dotenv()
@@ -72,7 +72,36 @@ class S1MSSPPro:
         return self._get_paginated("accounts")
 
     def get_sites(self, account_id):
-        return self._get_paginated("sites", params={"accountIds": account_id, "state": "active"})
+        """
+        O endpoint /sites tem estrutura diferente dos demais:
+        { "data": { "sites": [...], "allSites": {...} }, "pagination": {...} }
+        Por isso precisa de tratamento próprio em vez de _get_paginated genérico.
+        """
+        results = []
+        cursor = None
+
+        while True:
+            params = {"accountIds": account_id, "state": "active"}
+            if cursor:
+                params["cursor"] = cursor
+
+            url = f"{self.base_url}/web/api/v2.1/sites"
+            response = requests.get(url, headers=self.headers, params=params, timeout=30)
+
+            if response.status_code != 200:
+                print(f"[ERRO] /sites retornou {response.status_code}: {response.text[:200]}")
+                break
+
+            body = response.json()
+            # ✅ A lista real fica em data["sites"], não direto em data
+            sites_list = body.get("data", {}).get("sites", [])
+            results.extend(sites_list)
+
+            cursor = body.get("pagination", {}).get("nextCursor")
+            if not cursor:
+                break
+
+        return results
 
     def get_agent_count(self, site_id, machine_types=None, sku=None):
         """
