@@ -117,14 +117,13 @@ class S1MSSPPro:
     def get_agents(self, site_id):
         """
         Retorna todos os agentes ativos de um Site.
-        Filtra apenas campos necessários para reduzir payload.
+        Nota: /agents não suporta o param 'fields' — retorna o objeto completo.
         """
         return self._get_paginated(
             "agents",
             params={
                 "siteIds": site_id,
                 "isDecommissioned": "false",
-                "fields": "id,machineType,isDecommissioned",
             },
         )
 
@@ -183,7 +182,7 @@ class S1MSSPPro:
         counts = {"workstations": 0, "servers": 0, "other": 0}
 
         for agent in agents:
-            mt = (agent.get("machineType") or "").lower()
+            mt = (agent.get("machinetype") or "").lower()
             if mt in workstation_types:
                 counts["workstations"] += 1
             elif mt in server_types:
