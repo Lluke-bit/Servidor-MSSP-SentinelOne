@@ -25,8 +25,8 @@ class S1MSSPPro:
 
     def __init__(self):
         load_dotenv()
-        self.base_url = os.getenv("S1_BASE_URL", "").rstrip("/")
-        self.api_token = os.getenv("S1_API_TOKEN", "")
+        self.base_url = os.getenv("S1_BASE_URL_MSSP_008", "").rstrip("/")
+        self.api_token = os.getenv("S1_API_TOKEN_MSSP_008", "")
 
         if not self.base_url or not self.api_token:
             raise ValueError(
